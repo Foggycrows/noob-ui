@@ -7,7 +7,7 @@
     "dev": "pnpm --filter @noob-ui/play dev",
     "docs:dev": "pnpm --filter @noob-ui/docs dev",
     "docs:build": "pnpm --filter @noob-ui/docs build",
-    "test": "echo \"todo\""
+    "test": "pnpm --filter @noob-ui/components test"
   },
   "keywords": [],
   "author": "",
