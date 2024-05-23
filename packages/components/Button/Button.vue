@@ -7,19 +7,32 @@
 */
 
 <script setup lang="ts">
-import type { ButtonProps } from './types';
+import type { ButtonProps, ButtonEmits, ButtonInstance } from './types';
 import { ref } from 'vue'
+import { throttle } from 'lodash-es';
+
 defineOptions({
   name: 'ErButton'
 })
 const props = withDefaults(defineProps<ButtonProps>(), {
   tag: "button",
-  nativeType: "button"
+  nativeType: "button",
+  useThrottle: true,
+  throttleDuration: 500
 }) 
+
+const emits = defineEmits<ButtonEmits>()
 
 const slots = defineSlots()
 
 const _ref = ref<HTMLButtonElement>()
+
+const handleBtnClick = (e: MouseEvent) => emits("click", e)
+const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration)
+
+defineExpose<ButtonInstance>({
+  ref: _ref
+})
 </script>
 
 <template>
@@ -38,7 +51,15 @@ const _ref = ref<HTMLButtonElement>()
       'is-disabled': disabled,
       'is-loading': loading,
     }"
+    @click="
+      (e: MouseEvent) => 
+        useThrottle ? handleBtnClickThrottle(e) : handleBtnClick(e)
+    "
   >
     <slot></slot>
   </component>
 </template>
+
+<style>
+@import './style.css';
+</style>
