@@ -43,7 +43,7 @@
   font-size: var(--er-font-size-base);
   border-radius: var(--er-border-radius-base);
   & + & {
-    margin-left: 12px;
+    margin-left: 12px;  /* 相邻按钮间的距离 */
   }
   &:hover,
   &:focus {

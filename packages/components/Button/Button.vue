@@ -8,8 +8,9 @@
 
 <script setup lang="ts">
 import type { ButtonProps, ButtonEmits, ButtonInstance } from './types';
-import { ref } from 'vue'
-import { throttle } from 'lodash-es';
+import { ref, computed } from 'vue'
+import { throttle } from 'lodash-es'
+import ErIcon from '../Icon/Icon.vue'
 
 defineOptions({
   name: 'ErButton'
@@ -26,6 +27,9 @@ const emits = defineEmits<ButtonEmits>()
 const slots = defineSlots()
 
 const _ref = ref<HTMLButtonElement>()
+const iconStyle = computed(() => ({
+  marginRight:slots.default ? "6px" : "0px"
+}))
 
 const handleBtnClick = (e: MouseEvent) => emits("click", e)
 const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration)
@@ -37,9 +41,10 @@ defineExpose<ButtonInstance>({
 
 <template>
   <component 
-    :is="props.tag"
+    :is="tag"
     ref="_ref"
     class="er-button"
+    :autofocus="autofocus"
     :type="tag === 'button' ? nativeType : void 0"
     :disabled="disabled || loading ? true : void 0"
     :class="{
@@ -56,6 +61,24 @@ defineExpose<ButtonInstance>({
         useThrottle ? handleBtnClickThrottle(e) : handleBtnClick(e)
     "
   >
+  <template v-if="loading">
+    <slot name="loading">
+      <er-icon
+        class="loading-icon"
+        :icon="loadingIcon ?? 'spinner'"
+        :style="iconStyle"
+        size="1x"
+        spin
+      />
+    </slot>
+  </template>
+  <er-icon
+    v-if="icon && !loading"
+    :icon="icon"
+    :style="iconStyle"
+    size="1x"
+  />
+
     <slot></slot>
   </component>
 </template>

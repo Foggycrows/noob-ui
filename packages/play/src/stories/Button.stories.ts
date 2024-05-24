@@ -1,7 +1,8 @@
 import type { Meta, StoryObj, ArgTypes } from '@storybook/vue3'
-import { fn } from '@storybook/test'
+import { fn, within, userEvent, expect } from '@storybook/test'
 
 import { ErButton } from 'noob-ui'
+import exp from 'constants'
 
 type Story = StoryObj<typeof ErButton> & { argTypes: ArgTypes }
 
@@ -76,6 +77,15 @@ export const Default: Story & {args:{content:string}} = {
       `<er-button v-bind="args">{{args.content}}</er-button>`
     ),
   }),
+
+  play: async ({ args, canvasElement, step }) => {
+    const canvas = within(canvasElement)
+    await step('click btn', async () => {
+      await userEvent.click(canvas.getByRole('button'))
+    })
+
+    expect(args.onClick).toHaveBeenCalled()
+  } 
 }
 
 export default meta
