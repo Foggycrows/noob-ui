@@ -8,9 +8,10 @@
 
 <script setup lang="ts">
 import type { ButtonProps, ButtonEmits, ButtonInstance } from './types';
-import { ref, computed } from 'vue'
+import { ref, computed, inject } from 'vue'
 import { throttle } from 'lodash-es'
 import ErIcon from '../Icon/Icon.vue'
+import { BUTTON_GROUP_CTX_KEY } from './contants';
 
 defineOptions({
   name: 'ErButton'
@@ -25,14 +26,21 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 const emits = defineEmits<ButtonEmits>()
 
 const slots = defineSlots()
-
+const ctx = inject(BUTTON_GROUP_CTX_KEY, void 0)
 const _ref = ref<HTMLButtonElement>()
+const size = computed(() => ctx?.type ?? props?.size ?? "")
+const type = computed(() => ctx?.size ?? props?.type ?? "")
+const disabled = computed(() => ctx?.disabled || props?.disabled || false)
 const iconStyle = computed(() => ({
   marginRight:slots.default ? "6px" : "0px"
 }))
 
 const handleBtnClick = (e: MouseEvent) => emits("click", e)
-const handleBtnClickThrottle = throttle(handleBtnClick, props.throttleDuration)
+const handleBtnClickThrottle = throttle(
+  handleBtnClick, 
+  props.throttleDuration,
+  { trailing: false }
+)
 
 defineExpose<ButtonInstance>({
   ref: _ref
