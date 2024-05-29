@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /get-started
+      link: /page/get-started
 
 features:
   - title: 功能覆盖和兼容性
