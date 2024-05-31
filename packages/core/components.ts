@@ -3,7 +3,8 @@ import {
   ErButtonGroup, 
   ErIcon,
   ErCollapse,
-  ErCollapseItem 
+  ErCollapseItem,
+  ErAlert 
 } from "@noob-ui/components"
 import type { Plugin } from 'vue'
 
@@ -12,5 +13,6 @@ export default [
   ErButtonGroup, 
   ErIcon,
   ErCollapse,
-  ErCollapseItem
+  ErCollapseItem,
+  ErAlert
 ] as Plugin[]
