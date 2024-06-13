@@ -7,9 +7,13 @@ class ErUIError extends Error {
   }
 }
 
+function createUIError(scope: string, msg: string) {
+  return new ErUIError(`[${scope}]:${msg}`)
+}
+
 // scope 是报错位置
 export function throwError(scope: string, msg: string) {
-  throw new ErUIError(`[${scope}]: ${msg}`)
+  throw createUIError(scope, msg)
 }
 
 export function debugWarn(error: Error):void

@@ -2,7 +2,7 @@
 import type { AlertProps, AlertEmits, AlertInstance } from './types';
 import { computed, ref, useSlots } from 'vue'
 import { typeIconMap } from '@noob-ui/utils';
-import { ErIcon } from 'noob-ui';
+import ErIcon from '../Icon/Icon.vue'
 
 defineOptions({
   name: "Eralert"
@@ -50,7 +50,7 @@ defineExpose<AlertInstance>({
     >
       <er-icon
         v-if="showIcon"
-        class="er-alert_icon"
+        class="er-alert__icon"
         :class="{ 'big-icon': withDescription }"
         :icon="iconName"
       />

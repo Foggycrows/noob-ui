@@ -1,59 +1,81 @@
-/** reset.css */
 body {
+  /* 设置字体族，使用前面定义的变量 */
   font-family: var(--er-font-family);
+  /* 设置字体粗细为常规 */
   font-weight: 400;
+  /* 设置基础字体大小，使用前面定义的变量 */
   font-size: var(--er-font-size-base);
+  /* 设置行高为字体大小的1.2倍 */
   line-height: calc(var(--er-font-size-base) * 1.2);
+  /* 设置文本颜色，使用前面定义的变量 */
   color: var(--er-text-color-primary);
+  /* 在Webkit浏览器中启用字体抗锯齿 */
   -webkit-font-smoothing: antialiased;
+  /* 在Mac OS X上启用灰度字体渲染 */
   -moz-osx-font-smoothing: grayscale;
+  /* 禁用Webkit浏览器的点击高亮颜色 */
   -webkit-tap-highlight-color: transparent;
 }
 
 a {
+  /* 设置链接颜色，使用前面定义的变量 */
   color: var(--er-color-primary);
+  /* 移除链接的下划线 */
   text-decoration: none;
 
+  /* 链接鼠标悬停和焦点状态的样式 */
   &:hover,
   &:focus {
+    /* 改变链接颜色为浅色 */
     color: var(--er-color-primary-light-3);
   }
 
+  /* 链接被激活时的样式 */
   &:active {
+    /* 改变链接颜色为深色 */
     color: var(--er-color-primary-dark-2);
   }
 }
 
+/* 为所有标题元素设置样式 */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
+  /* 设置标题颜色，使用前面定义的变量 */
   color: var(--er-text-color-regular);
+  /* 继承父元素的字体粗细 */
   font-weight: inherit;
 
+  /* 为第一个标题元素重置上边距 */
   &:first-child {
     margin-top: 0;
   }
 
+  /* 为最后一个标题元素重置下边距 */
   &:last-child {
     margin-bottom: 0;
   }
 }
 
+/* 单独为h1设置字体大小 */
 h1 {
   font-size: calc(var(--er-font-size-base) + 6px);
 }
 
+/* 单独为h2设置字体大小 */
 h2 {
   font-size: calc(var(--er-font-size-base) + 4px);
 }
 
+/* 单独为h3设置字体大小 */
 h3 {
   font-size: calc(var(--er-font-size-base) + 2px);
 }
 
+/* 为h4, h5, h6和p设置继承字体大小 */
 h4,
 h5,
 h6,
@@ -61,30 +83,35 @@ p {
   font-size: inherit;
 }
 
+/* 设置段落的行高和首尾段落的边距 */
 p {
   line-height: 1.8;
-
+  /* 为第一个段落重置上边距 */
   &:first-child {
     margin-top: 0;
   }
-
+  /* 为最后一个段落重置下边距 */
   &:last-child {
     margin-bottom: 0;
   }
 }
 
+/* 设置上标和下标的字体大小 */
 sup,
 sub {
   font-size: calc(var(--er-font-size-base) - 1px);
 }
 
+/* 设置小字的字体大小 */
 small {
   font-size: calc(var(--er-font-size-base) - 2px);
 }
 
+/* 设置水平线元素的样式 */
 hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
+  /* 设置细线边框，颜色使用前面定义的变量 */
   border-top: 1px solid var(--er-border-color-lighter);
 }

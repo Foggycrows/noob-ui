@@ -5,7 +5,7 @@
   --er-alert-title-font-size: 14px;
   --er-alert-title-font-size-with-desc: 16px;
   --er-alert-desc-font-size: 14px;
-  --er-alert-text-colot: var(--er-text-color-primary);
+  --er-alert-text-color: var(--er-text-color-primary);
   --er-alert-top-margin: 20px;
   --er-alert-icon-size: 16px;
   --er-alert-icon-margin: 8px;
@@ -16,40 +16,41 @@
   padding: var(--er-alert-padding);
   margin: 0;
   box-sizing: border-box;
-  border-radius: var(--er-border-radius-base);
+  border-radius: var(--er-alert-border-radius-base);
   position: relative;
   background-color: var(--er-alert-bg-color);
   overflow: hidden;
   opacity: 1;
   display: flex;
   align-items: center;
-  transition: opasity var(--er-transition-duration);
+  transition: opacity var(--er-transition-duration);
   margin-top: var(--er-alert-top-margin);
   .er-alert__icon {
-    color: var(--er-alert-text-colot);
+    color: var(--er-alert-text-color);
     font-size: var(--er-alert-icon-size);
     width: var(--er-alert-icon-size);
     margin-right: var(--er-alert-icon-margin);
-    &.big-icon {
+    &.big-icon{
       font-size: var(--er-alert-big-icon-size);
       width: var(--er-alert-big-icon-size);
       margin-right: var(--er-alert-big-icon-margin);
     }
   }
   .er-alert__content {
-    color: var(--er-alert-text-colot);
+    color:  var(--er-alert-text-color);
     vertical-align: text-top;
-    .er-alert__title {
+    .er-alert__title{
       font-size: var(--er-alert-title-font-size);
       line-height: 24px;
       &.with-desc {
         font-size: var(--er-alert-title-font-size-with-desc);
       }
-    }
-    .er-alert__description {
+    } 
+    .er-alert__description{
       font-size: var(--er-alert-desc-font-size);
       margin: 0;
     }
+
     .er-alert__close {
       font-size: var(--er-alert-close-font-size);
       opacity: 1;
@@ -72,9 +73,11 @@
       }
     }
   }
+
+
   &.text-center {
-    justify-items: center;
-    span, p {
+    justify-content: center;
+    span,p {
       text-align: center;
     }
   }
@@ -85,7 +88,7 @@
   opacity: 0;
 }
 
-@each $val in success, warning, info, danger {
+@each $val in success,warning,info,danger { 
   .er-alert__$(val).er-alert__light {
     --er-alert-text-color: var(--er-color-$(val));
     --er-alert-bg-color: var(--er-color-$(val)-light-9);

@@ -1,67 +1,78 @@
 @import './reset.css';
 
 :root {
-  /* colors */
-  --er-color-white: #ffffff;
-  --er-color-black: #000000;
+  /* 定义基础颜色变量 */
+  --er-color-white: #ffffff; /* 白色 */
+  --er-color-black: #000000; /* 黑色 */
+
+  /* 定义一组颜色主题变量 */
   --colors: (primary: #409eff, success: #67c23a, warning: #e6a23c, danger: #f56c6c, info: #909399);
-  --er-bg-color: #ffffff;
-  --er-bg-color-page: #f2f3f5;
-  --er-bg-color-overlay: #ffffff;
-  --er-text-color-primary: #303133;
-  --er-text-color-regular: #606266;
-  --er-text-color-secondary: #909399;
-  --er-text-color-placeholder: #a8abb2;
-  --er-text-color-disabled: #c0c4cc;
-  --er-border-color: #dcdfe6;
-  --er-border-color-light: #e4e7ed;
-  --er-border-color-lighter: #ebeef5;
-  --er-border-color-extra-light: #f2f6fc;
-  --er-border-color-dark: #d4d7de;
-  --er-border-color-darker: #cdd0d6;
-  --er-fill-color: #f0f2f5;
-  --er-fill-color-light: #f5f7fa;
-  --er-fill-color-lighter: #fafafa;
-  --er-fill-color-extra-light: #fafcff;
-  --er-fill-color-dark: #ebedf0;
-  --er-fill-color-darker: #e6e8eb;
-  --er-fill-color-blank: #ffffff;
-  
+
+  /* 定义背景颜色变量 */
+  --er-bg-color: #ffffff; /* 基础背景色 */
+  --er-bg-color-page: #f2f3f5; /* 页面背景色 */
+  --er-bg-color-overlay: #ffffff; /* 覆盖层背景色 */
+
+  /* 定义文本颜色变量 */
+  --er-text-color-primary: #303133; /* 主要文本色 */
+  --er-text-color-regular: #606266; /* 常规文本色 */
+  --er-text-color-secondary: #909399; /* 次要文本色 */
+  --er-text-color-placeholder: #a8abb2; /* 占位符文本色 */
+  --er-text-color-disabled: #c0c4cc; /* 禁用状态文本色 */
+
+  /* 定义边框颜色变量 */
+  --er-border-color: #dcdfe6; /* 基础边框色 */
+  --er-border-color-light: #e4e7ed; /* 浅色边框 */
+  --er-border-color-lighter: #ebeef5; /* 更浅色边框 */
+  --er-border-color-extra-light: #f2f6fc; /* 额外浅色边框 */
+  --er-border-color-dark: #d4d7de; /* 深色边框 */
+  --er-border-color-darker: #cdd0d6; /* 更深色边框 */
+
+  /* 定义填充颜色变量 */
+  --er-fill-color: #f0f2f5; /* 基础填充色 */
+  --er-fill-color-light: #f5f7fa; /* 浅色填充 */
+  --er-fill-color-lighter: #fafafa; /* 更浅色填充 */
+  --er-fill-color-extra-light: #fafcff; /* 额外浅色填充 */
+  --er-fill-color-dark: #ebedf0; /* 深色填充 */
+  --er-fill-color-darker: #e6e8eb; /* 更深色填充 */
+  --er-fill-color-blank: #ffffff; /* 空白填充色 */
+
+  /* 使用CSS的@each和@for指令生成颜色的深浅变化 */
   @each $val, $color in var(--colors) {
-    --er-color-$(val): $(color);
+    --er-color-$(val): $(color); /* 为每个主题颜色创建基础变量 */
     @for $i from 3 to 9 {
-      --er-color-$(val)-light-$(i): mix(#fff, $(color), 0.$(i));
+      --er-color-$(val)-light-$(i): mix(#fff, $(color), 0.$(i)); /* 为每个主题颜色创建浅色变化 */
     }
-    --er-color-$(val)-dark-2: mix(#000, $(color), 0.2);
+    --er-color-$(val)-dark-2: mix(#000, $(color), 0.2); /* 为每个主题颜色创建深色变化 */
   }
 
-  /* border */
-  --er-border-width: 1px;
-  --er-border-style: solid;
-  --er-border-color-hover: var(--er-text-color-disabled);
-  --er-border: var(--er-border-width) var(--er-border-style) var(--er-border-color);
-  --er-border-radius-base: 4px;
-  --er-border-radius-small: 2px;
-  --er-border-radius-round: 20px;
-  --er-border-radius-circle: 100%;
+  /* 定义边框样式变量 */
+  --er-border-width: 1px; /* 边框宽度 */
+  --er-border-style: solid; /* 边框样式 */
+  --er-border-color-hover: var(--er-text-color-disabled); /* 边框悬停颜色 */
+  --er-border: var(--er-border-width) var(--er-border-style) var(--er-border-color); /* 边框综合变量 */
+  --er-border-radius-base: 4px; /* 基础边框圆角 */
+  --er-border-radius-small: 2px; /* 小边框圆角 */
+  --er-border-radius-round: 20px; /* 圆形边框圆角 */
+  --er-border-radius-circle: 100%; /* 圆形边框圆角 */
 
-  /*font*/
-  --er-font-size-extra-large: 20px;
-  --er-font-size-large: 18px;
-  --er-font-size-medium: 16px;
-  --er-font-size-base: 14px;
-  --er-font-size-small: 13px;
-  --er-font-size-extra-small: 12px;
-  --er-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', '\5fae\8f6f\96c5\9ed1', Arial, sans-serif;
-  --er-font-weight-primary: 500;
+  /* 定义字体样式变量 */
+  --er-font-size-extra-large: 20px; /* 特大字体大小 */
+  --er-font-size-large: 18px; /* 大字体大小 */
+  --er-font-size-medium: 16px; /* 中字体大小 */
+  --er-font-size-base: 14px; /* 基础字体大小 */
+  --er-font-size-small: 13px; /* 小字体大小 */
+  --er-font-size-extra-small: 12px; /* 特小字体大小 */
+  --er-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', /* 字体族 */
+    'Microsoft YaHei', '\5fae\8f6f\96c5\9ed1', Arial, sans-serif; /* 支持中文的字体族 */
+  --er-font-weight-primary: 500; /* 主要字体粗细 */
 
-  /*disabled*/
-  --er-disabled-bg-color: var(--er-fill-color-light);
-  --er-disabled-text-color: var(--er-text-color-placeholder);
-  --er-disabled-border-color: var(--er-border-color-light);
+  /* 定义禁用状态样式变量 */
+  --er-disabled-bg-color: var(--er-fill-color-light); /* 禁用背景色 */
+  --er-disabled-text-color: var(--er-text-color-placeholder); /* 禁用文本色 */
+  --er-disabled-border-color: var(--er-border-color-light); /* 禁用边框色 */
 
-  /*animation*/
-  --er-transition-duration: 0.4s;
-  --er-transition-duration-fast: 0.2s;
+  /* 定义动画持续时间变量 */
+  --er-transition-duration: 0.4s; /* 基础动画持续时间 */
+  --er-transition-duration-fast: 0.2s; /* 快速动画持续时间 */
 }
